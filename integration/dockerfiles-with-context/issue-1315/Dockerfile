@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.11 as builder
+FROM alpine:3.16.9 as builder
 
 RUN mkdir -p /myapp/somedir \
  && touch /myapp/somedir/somefile \
  && chown 123:123 /myapp/somedir \
  && chown 321:321 /myapp/somedir/somefile
 
-FROM alpine:3.11
+FROM alpine:3.16.9
 COPY --from=builder /myapp /myapp
 RUN printf "%s\n" \
       "0 0 /myapp/" \
